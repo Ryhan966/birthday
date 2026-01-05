@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Love ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, #ffd1dc, #ffe6eb);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    background: #fff;
+    width: 90%;
+    max-width: 420px;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.heart {
+    font-size: 50px;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+h1 { color: #d6336c; }
+
+.letter {
+    font-size: 1.05em;
+    color: #444;
+    text-align: left;
+    white-space: pre-line;
+    min-height: 180px;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    background: #ff4d6d;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.hidden { display: none; }
+
+/* Photos Grid */
+.photos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.photos img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Floating Hearts */
+.floating-heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 24px;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-100vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <div class="heart">❤️</div>
+    <h1>Happy Birthday Nww bby❤️</h1>
+
+    <div id="letter" class="letter"></div>
+
+    <button id="unlockBtn" class="hidden" onclick="askPassword()">
+        Unlock My Heart 🔐
+    </button>
+
+    <div id="surprise" class="hidden">
+        <h2>Our Memories 📸</h2>
+        <div class="photos">
+            <img src="https://i.pinimg.com/736x/fe/73/32/fe7332b18c7822ef60691470a44947cd.jpg">
+            <img src="https://i.pinimg.com/736x/b1/38/e6/b138e696b7704c50558ee63e683c79c1.jpg">
+            <img src="https://i.pinimg.com/736x/af/62/ff/af62ff0aef521d386709f216a38fad32.jpg">
+            <img src="https://i.pinimg.com/736x/bb/9b/27/bb9b27be8f39d193190c0d234ae5b6ca.jpg">
+        </div>
+        <p style="margin-top:15px;">
+            Forever yours,  
+            with all my love ❤️
+        </p>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+    /* Typing Letter */
+    const text = `
+My dearest, cutest, lovliest and did i mention cutest? bby,
+
+I Love You sosososo much ko bby' smile twy voice twy akyaung
+yay yin d website nae lout mhr taung ma hok buu 😔
+ko' a cx ya sone lyy
+
+And I'm very sorry for not being with you in this moment bby I'm really sorry😭
+nout years twy birthdays twy anni twy kya tu" phyat than kya mll nww😢
+
+And one more thing, you already known this btw I LOVE YOU MOREEEEEEE!
+
+On your birthday, I promise you
+my heart, always and forever.
+
+Forever yours ❤️
+Sending hugs and kisses.
+Love you grandma👵.
+`;
+
+    let i = 0;
+    const letter = document.getElementById("letter");
+    const unlockBtn = document.getElementById("unlockBtn");
+
+    function typeText() {
+        if (i < text.length) {
+            letter.innerHTML += text.charAt(i++);
+            setTimeout(typeText, 40);
+        } else {
+            unlockBtn.classList.remove("hidden");
+        }
+    }
+    typeText();
+
+    /* Password Protection */
+    function askPassword() {
+        const pass = prompt("Enter the secret password 💖");
+        if (pass === "612010") {
+            document.getElementById("surprise").classList.remove("hidden");
+            unlockBtn.style.display = "none";
+        } else {
+            alert("Rlly you don't know the password?? 😢 Pyn kyoe srr kyi'");
+        }
+    }
+
+    window.askPassword = askPassword; // make button work
+
+    /* Floating Hearts */
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "floating-heart";
+        heart.innerHTML = "💕";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 6000);
+    }, 500);
+
+});
+</script>
+
+</body>
+</html>
